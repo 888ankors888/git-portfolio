@@ -89,26 +89,29 @@
     .pages {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
+      margin-top: auto;
     }
     .page-link {
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      padding: 11px 14px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #21262d;
+      gap: 3px;
+      padding: 14px 16px;
+      border: 1px solid rgba(88, 166, 255, .45);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(31, 111, 235, .22), rgba(88, 166, 255, .08));
       color: var(--text);
       text-decoration: none;
-      transition: border-color .15s ease, color .15s ease;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
     }
     .page-link:hover {
       border-color: var(--accent);
-      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(31, 111, 235, .18);
     }
     .page-name {
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 16px;
     }
     .page-path {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -117,42 +120,11 @@
       word-break: break-all;
     }
     .no-pages {
-      padding: 11px 14px;
+      padding: 14px 16px;
       border: 1px dashed var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       color: var(--muted);
       background: rgba(255, 255, 255, .02);
-    }
-    .card-actions {
-      margin-top: auto;
-      padding-top: 6px;
-    }
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 11px 16px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #21262d;
-      color: var(--text);
-      text-align: center;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .btn.primary {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #fff;
-    }
-    .btn.primary:hover {
-      background: #388bfd;
-      border-color: #388bfd;
-      color: #fff;
     }
     footer {
       margin-top: 48px;
@@ -200,12 +172,6 @@
             <span class="page-path">index.html</span>
           </a>
         </div>
-
-        <div class="card-actions">
-          <a class="btn primary" href="https://github.com/888ankors888/GG-chat" target="_blank" rel="noopener">
-            Репозиторий GitHub
-          </a>
-        </div>
       </article>
 
       <article class="card">
@@ -220,12 +186,6 @@
           <a class="page-link" href="https://888ankors888.github.io/klever/" target="_blank" rel="noopener">
             <span class="page-name">Главная страница</span>
             <span class="page-path">index.html</span>
-          </a>
-        </div>
-
-        <div class="card-actions">
-          <a class="btn primary" href="https://github.com/888ankors888/klever" target="_blank" rel="noopener">
-            Репозиторий GitHub
           </a>
         </div>
       </article>
@@ -259,12 +219,6 @@
             <span class="page-path">books/les.html</span>
           </a>
         </div>
-
-        <div class="card-actions">
-          <a class="btn primary" href="https://github.com/888ankors888/Mia-kniga" target="_blank" rel="noopener">
-            Репозиторий GitHub
-          </a>
-        </div>
       </article>
 
       <article class="card">
@@ -282,12 +236,6 @@
           <a class="page-link" href="https://888ankors888.github.io/git-portfolio/" target="_blank" rel="noopener">
             <span class="page-name">Главная страница портфолио</span>
             <span class="page-path">index.html</span>
-          </a>
-        </div>
-
-        <div class="card-actions">
-          <a class="btn primary" href="https://github.com/888ankors888/git-portfolio" target="_blank" rel="noopener">
-            Репозиторий GitHub
           </a>
         </div>
       </article>
