@@ -4,11 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Git-портфолио — 888ankors888</title>
-  <meta name="description" content="Портфолио публичных проектов и веб-страниц GitHub пользователя 888ankors888.">
+  <meta name="description" content="Табличное портфолио публичных проектов и веб-страниц GitHub пользователя 888ankors888.">
   <style>
     :root {
       --bg: #0d1117;
-      --card: #161b22;
+      --panel: #161b22;
+      --row: #10161d;
       --border: #30363d;
       --text: #e6edf3;
       --muted: #9aa4b2;
@@ -18,159 +19,160 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: var(--bg);
+      background:
+        radial-gradient(900px 420px at 15% -10%, rgba(31, 111, 235, .16), transparent 60%),
+        radial-gradient(800px 400px at 90% 0%, rgba(88, 166, 255, .10), transparent 55%),
+        var(--bg);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       line-height: 1.6;
     }
     .container {
-      max-width: 1080px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 40px 20px 56px;
+      padding: 48px 20px 64px;
     }
     header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
     h1 {
       margin: 0 0 10px;
-      font-size: clamp(30px, 5vw, 44px);
+      font-size: clamp(30px, 5vw, 46px);
+      letter-spacing: -.02em;
     }
     .subtitle {
+      margin: 0 auto;
+      max-width: 760px;
+      color: var(--muted);
+    }
+    .subtitle a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .subtitle a:hover {
+      text-decoration: underline;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      background: rgba(22, 27, 34, .82);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+    }
+    table {
+      width: 100%;
+      min-width: 880px;
+      border-collapse: collapse;
+    }
+    thead th {
+      position: sticky;
+      top: 0;
+      background: #1c2430;
+      color: #dbeafe;
+      text-align: left;
+      padding: 16px 18px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody td {
+      padding: 18px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+    tbody tr {
+      background: var(--row);
+      transition: background .15s ease;
+    }
+    tbody tr:hover {
+      background: #182130;
+    }
+    .project-name {
+      font-size: 19px;
+      font-weight: 700;
+      margin: 0 0 6px;
+    }
+    .project-desc {
       margin: 0;
       color: var(--muted);
-      max-width: 720px;
-      margin-inline: auto;
+      font-size: 14px;
     }
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 22px;
-    }
-    .card {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-    }
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .card h2 {
-      margin: 0;
-      font-size: 24px;
-      word-break: break-word;
-    }
-    .badge {
-      flex-shrink: 0;
-      padding: 4px 10px;
+    .tag {
+      display: inline-block;
+      padding: 3px 9px;
       border: 1px solid var(--border);
       border-radius: 999px;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       white-space: nowrap;
-    }
-    .card > p {
-      margin: 0;
-      color: var(--muted);
-    }
-    .pages-title {
-      margin: 6px 0 0;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
     }
     .pages {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
     .page-link {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      padding: 11px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 100%;
+      padding: 8px 12px;
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 9px;
       background: #21262d;
       color: var(--text);
       text-decoration: none;
-      transition: border-color .15s ease, color .15s ease;
+      font-size: 14px;
+      transition: border-color .15s ease, color .15s ease, transform .15s ease;
     }
     .page-link:hover {
       border-color: var(--accent);
       color: var(--accent);
-    }
-    .page-name {
-      font-weight: 600;
+      transform: translateY(-1px);
     }
     .page-path {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12px;
+      display: block;
       color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
       word-break: break-all;
     }
     .no-pages {
-      padding: 11px 14px;
-      border: 1px dashed var(--border);
-      border-radius: 10px;
       color: var(--muted);
-      background: rgba(255, 255, 255, .02);
+      font-size: 14px;
     }
-    .card-actions {
-      margin-top: auto;
-      padding-top: 6px;
-    }
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 11px 16px;
-      border: 1px solid var(--border);
+    .repo-btn {
+      display: inline-block;
+      padding: 10px 16px;
+      border: 1px solid var(--primary);
       border-radius: 10px;
-      background: #21262d;
-      color: var(--text);
-      text-align: center;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .btn.primary {
       background: var(--primary);
-      border-color: var(--primary);
       color: #fff;
+      text-decoration: none;
+      font-weight: 650;
+      font-size: 14px;
+      white-space: nowrap;
+      transition: background .15s ease, border-color .15s ease;
     }
-    .btn.primary:hover {
+    .repo-btn:hover {
       background: #388bfd;
       border-color: #388bfd;
-      color: #fff;
     }
     footer {
-      margin-top: 48px;
+      margin-top: 32px;
       text-align: center;
       color: var(--muted);
       font-size: 14px;
     }
-    @media (max-width: 560px) {
-      .container {
-        padding: 28px 14px 40px;
-      }
-      .card {
-        padding: 18px;
-      }
-      .card-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    @media (max-width: 720px) {
+      .container { padding: 30px 14px 44px; }
+      thead th, tbody td { padding: 14px; }
+      .project-name { font-size: 17px; }
     }
   </style>
 </head>
@@ -184,114 +186,103 @@
       </p>
     </header>
 
-    <main class="projects">
+    <main>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Проект</th>
+              <th>Опубликованные страницы</th>
+              <th>Репозиторий</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <p class="project-name">GG-chat <span class="tag">Веб-приложение</span></p>
+                <p class="project-desc">Личный сайт и веб-приложение «ГГ чат».</p>
+              </td>
+              <td>
+                <div class="pages">
+                  <a class="page-link" href="https://xn--80afa5dxa.xn--p1ai/" target="_blank" rel="noopener">
+                    Главная страница
+                    <span class="page-path">index.html</span>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <a class="repo-btn" href="https://github.com/888ankors888/GG-chat" target="_blank" rel="noopener">Репозиторий GitHub</a>
+              </td>
+            </tr>
 
-      <article class="card">
-        <div class="card-header">
-          <h2>GG-chat</h2>
-          <span class="badge">Веб-приложение</span>
-        </div>
-        <p>Личный сайт и веб-приложение «ГГ чат».</p>
+            <tr>
+              <td>
+                <p class="project-name">klever <span class="tag">Веб-страница</span></p>
+                <p class="project-desc">Веб-страница проекта klever.</p>
+              </td>
+              <td>
+                <div class="pages">
+                  <a class="page-link" href="https://888ankors888.github.io/klever/" target="_blank" rel="noopener">
+                    Главная страница
+                    <span class="page-path">index.html</span>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <a class="repo-btn" href="https://github.com/888ankors888/klever" target="_blank" rel="noopener">Репозиторий GitHub</a>
+              </td>
+            </tr>
 
-        <p class="pages-title">Страницы сайта</p>
-        <div class="pages">
-          <a class="page-link" href="https://xn--80afa5dxa.xn--p1ai/" target="_blank" rel="noopener">
-            <span class="page-name">Главная страница</span>
-            <span class="page-path">index.html</span>
-          </a>
-        </div>
+            <tr>
+              <td>
+                <p class="project-name">Mia-kniga <span class="tag">Книги и игры</span></p>
+                <p class="project-desc">Интерактивный проект с книгами и играми.</p>
+              </td>
+              <td>
+                <div class="pages">
+                  <a class="page-link" href="https://888ankors888.github.io/Mia-kniga/" target="_blank" rel="noopener">
+                    Главная страница
+                    <span class="page-path">index.html</span>
+                  </a>
+                  <a class="page-link" href="https://888ankors888.github.io/Mia-kniga/Games/Nastol.html" target="_blank" rel="noopener">
+                    Настольные игры
+                    <span class="page-path">Games/Nastol.html</span>
+                  </a>
+                  <a class="page-link" href="https://888ankors888.github.io/Mia-kniga/Games/Obuch.html" target="_blank" rel="noopener">
+                    Обучающие игры
+                    <span class="page-path">Games/Obuch.html</span>
+                  </a>
+                  <a class="page-link" href="https://888ankors888.github.io/Mia-kniga/books/les.html" target="_blank" rel="noopener">
+                    Книга «Лес»
+                    <span class="page-path">books/les.html</span>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <a class="repo-btn" href="https://github.com/888ankors888/Mia-kniga" target="_blank" rel="noopener">Репозиторий GitHub</a>
+              </td>
+            </tr>
 
-        <div class="card-actions">
-          <a class="btn primary" href="https://github.com/888ankors888/GG-chat" target="_blank" rel="noopener">
-            Репозиторий GitHub
-          </a>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-header">
-          <h2>klever</h2>
-          <span class="badge">Веб-страница</span>
-        </div>
-        <p>Веб-страница проекта klever.</p>
-
-        <p class="pages-title">Страницы сайта</p>
-        <div class="pages">
-          <a class="page-link" href="https://888ankors888.github.io/klever/" target="_blank" rel="noopener">
-            <span class="page-name">Главная страница</span>
-            <span class="page-path">index.html</span>
-          </a>
-        </div>
-
-        <div class="card-actions">
-          <a class="btn primary" href="https://github.com/888ankors888/klever" target="_blank" rel="noopener">
-            Репозиторий GitHub
-          </a>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-header">
-          <h2>Mia-kniga</h2>
-          <span class="badge">Книги и игры</span>
-        </div>
-        <p>Интерактивный проект с книгами и играми.</p>
-
-        <p class="pages-title">Страницы сайта</p>
-        <div class="pages">
-          <a class="page-link" href="https://888ankors888.github.io/Mia-kniga/" target="_blank" rel="noopener">
-            <span class="page-name">Главная страница</span>
-            <span class="page-path">index.html</span>
-          </a>
-
-          <a class="page-link" href="https://888ankors888.github.io/Mia-kniga/Games/Nastol.html" target="_blank" rel="noopener">
-            <span class="page-name">Настольные игры</span>
-            <span class="page-path">Games/Nastol.html</span>
-          </a>
-
-          <a class="page-link" href="https://888ankors888.github.io/Mia-kniga/Games/Obuch.html" target="_blank" rel="noopener">
-            <span class="page-name">Обучающие игры</span>
-            <span class="page-path">Games/Obuch.html</span>
-          </a>
-
-          <a class="page-link" href="https://888ankors888.github.io/Mia-kniga/books/les.html" target="_blank" rel="noopener">
-            <span class="page-name">Книга «Лес»</span>
-            <span class="page-path">books/les.html</span>
-          </a>
-        </div>
-
-        <div class="card-actions">
-          <a class="btn primary" href="https://github.com/888ankors888/Mia-kniga" target="_blank" rel="noopener">
-            Репозиторий GitHub
-          </a>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-header">
-          <h2>git-portfolio</h2>
-          <span class="badge">Портфолио</span>
-        </div>
-        <p>
-          Центральная страница-портфолио: каталог публичных репозиториев и опубликованных
-          HTML-страниц GitHub пользователя 888ankors888.
-        </p>
-
-        <p class="pages-title">Страницы сайта</p>
-        <div class="pages">
-          <a class="page-link" href="https://888ankors888.github.io/git-portfolio/" target="_blank" rel="noopener">
-            <span class="page-name">Главная страница портфолио</span>
-            <span class="page-path">index.html</span>
-          </a>
-        </div>
-
-        <div class="card-actions">
-          <a class="btn primary" href="https://github.com/888ankors888/git-portfolio" target="_blank" rel="noopener">
-            Репозиторий GitHub
-          </a>
-        </div>
-      </article>
-
+            <tr>
+              <td>
+                <p class="project-name">git-portfolio <span class="tag">Портфолио</span></p>
+                <p class="project-desc">Центральная страница-портфолио: каталог публичных репозиториев и опубликованных HTML-страниц GitHub пользователя 888ankors888.</p>
+              </td>
+              <td>
+                <div class="pages">
+                  <a class="page-link" href="https://888ankors888.github.io/git-portfolio/" target="_blank" rel="noopener">
+                    Главная страница портфолио
+                    <span class="page-path">index.html</span>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <a class="repo-btn" href="https://github.com/888ankors888/git-portfolio" target="_blank" rel="noopener">Репозиторий GitHub</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
 
     <footer>
